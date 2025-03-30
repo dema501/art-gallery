@@ -39,19 +39,25 @@ Developed a responsive e-commerce platform for "Art Waves," a digital art market
 - Responsive
 
 ## Run Locally
+⚠️ Due to compatibility issues with Python 3.13, we recommend using Python 3.11:
+Install Python 3.11 and create a virtual environment (macOS):
 
-Install dependencies
+```bash
+  brew install python@3.11 && brew install uv && uv venv && source .venv/bin/activate
+```
+
+Install dependencies:
 
 ```bash
   npm install
 ```
 
-Start the server
+Start the server:
 
 ```bash
   npm run start
 ```
-"# art-work" 
+"# art-work"
 
 
 ---
