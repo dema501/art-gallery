@@ -11,7 +11,7 @@ import { getCartService } from "../services/cart-services/getCartService";
 import { useAuth } from "./AuthProvider.js";
 import { getWishlistService } from "../services/wishlist-services/getWishlistService";
 import { addToWishlistService } from "../services/wishlist-services/addToWishlistService";
-import { removeFromWishlistService } from "../services/wishlist-services/removeFromWishlist";
+import { removeFromWishlistService } from "../services/wishlist-services/removeFromWishlistService";
 import { removeFromCartService } from "../services/cart-services/removeFromCartService";
 import { getAddressListService } from "../services/address-services/getAddressListService";
 import toast from "react-hot-toast";
@@ -27,7 +27,7 @@ export function UserProvider({ children }) {
   const [, setError] = useState("");
   const [userDataState, dispatch] = useReducer(
     userDataReducer,
-    initialUserData
+    initialUserData,
   );
 
   const { auth } = useAuth();
@@ -123,7 +123,7 @@ export function UserProvider({ children }) {
         const response = await changeQuantityCartService(
           product._id,
           auth.token,
-          type
+          type,
         );
 
         if (response.status === 200) {
@@ -151,7 +151,7 @@ export function UserProvider({ children }) {
           if (response.status === 201) {
             setCartLoading(false);
             toast.success(
-              `${product.name} added to the wishlist successfully!`
+              `${product.name} added to the wishlist successfully!`,
             );
             dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
           }
@@ -167,12 +167,12 @@ export function UserProvider({ children }) {
           setError("");
           const response = await removeFromWishlistService(
             product._id,
-            auth.token
+            auth.token,
           );
           if (response.status === 200) {
             setCartLoading(false);
             toast.success(
-              `${product.name} removed from the wishlist successfully!`
+              `${product.name} removed from the wishlist successfully!`,
             );
             dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
           }
@@ -206,7 +206,7 @@ export function UserProvider({ children }) {
       if (response.status === 200) {
         setCartLoading(false);
         toast.success(
-          `${product.name} removed from the wishlist successfully!`
+          `${product.name} removed from the wishlist successfully!`,
         );
         dispatch({ type: "SET_WISHLIST", payload: response.data.wishlist });
       }
@@ -220,26 +220,26 @@ export function UserProvider({ children }) {
 
   const isProductInCart = (product) => {
     const found = userDataState.cartProducts.find(
-      (item) => item._id === product._id
+      (item) => item._id === product._id,
     );
     return found ? true : false;
   };
 
   const isProductInWishlist = (product) => {
     const found = userDataState.wishlistProducts.find(
-      (item) => item._id === product._id
+      (item) => item._id === product._id,
     );
     return found ? true : false;
   };
 
   const totalDiscountedPrice = userDataState.cartProducts?.reduce(
     (acc, curr) => acc + curr.discounted_price * curr.qty,
-    0
+    0,
   );
 
   const totalOriginalPrice = userDataState.cartProducts?.reduce(
     (acc, curr) => acc + curr.original_price * curr.qty,
-    0
+    0,
   );
 
   const discountPercent = () => {
@@ -249,7 +249,7 @@ export function UserProvider({ children }) {
         original: acc.original + curr.original_price,
         discount: acc.discount + curr.discounted_price,
       }),
-      { original: 0, discount: 0 }
+      { original: 0, discount: 0 },
     );
 
     const totalDiscount =
