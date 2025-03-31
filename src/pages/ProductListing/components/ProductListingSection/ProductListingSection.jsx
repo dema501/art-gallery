@@ -1,19 +1,20 @@
-import "./ProductListingSection.css";
-import Tilt from "react-parallax-tilt";
 import React from "react";
+import Tilt from "react-parallax-tilt";
+import { AiOutlineHeart } from "react-icons/ai";
+import { AiTwotoneHeart } from "react-icons/ai";
+import { BsFillStarFill } from "react-icons/bs";
 
 import { useData } from "../../../../contexts/DataProvider.js";
+import { useUserData } from "../../../../contexts/UserDataProvider.js";
+
 import { Link } from "react-router-dom";
 import { getCategoryWiseProducts } from "../../../../helpers/filter-functions/category";
 import { getRatedProducts } from "../../../../helpers/filter-functions/ratings";
 import { getPricedProducts } from "../../../../helpers/filter-functions/price";
 import { getSortedProducts } from "../../../../helpers/filter-functions/sort";
 import { getSearchedProducts } from "../../../../helpers/searchedProducts";
-import { AiOutlineHeart } from "react-icons/ai";
-import { AiTwotoneHeart } from "react-icons/ai";
-import { useUserData } from "../../../../contexts/UserDataProvider.js";
 
-import { BsFillStarFill } from "react-icons/bs";
+import "./ProductListingSection.css";
 
 export const ProductListingSection = () => {
   const { state } = useData();
@@ -87,7 +88,7 @@ export const ProductListingSection = () => {
                 </Link>
 
                 <div className="product-card-details">
-                  <h3>{name}</h3>
+                  <h3 data-testid={_id}>{name}</h3>
                   <p className="ratings">
                     {rating}
                     <BsFillStarFill color="orange" /> ({reviews} reviews){" "}
