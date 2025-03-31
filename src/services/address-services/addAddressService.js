@@ -1,9 +1,9 @@
-import axios from "axios";
+import api from "../../api/api";
 
 export const addAddressService = async (address, token) => {
-  return await axios.post(
+  return await api.post(
     "/api/user/address/",
     { address },
-    { headers: { authorization: token } }
+    { headers: { authorization: token } },
   );
 };
