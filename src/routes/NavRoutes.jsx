@@ -3,7 +3,7 @@ import { Home } from "../pages/Home/Home";
 import { Cart } from "../pages/Cart/Cart";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "../pages/auth/Login/Login";
-import { ProductListing } from "../pages/ProductListing/ProductListing";
+import { ProductListing } from "../pages/ProductListing/ProductListingOptimized";
 import { ProductDetails } from "../pages/ProductDetails/ProductDetails";
 import { RequiresAuth } from "../components/requires-auth/RequiresAuth";
 import { Signup } from "../pages/auth/Signup/Signup";

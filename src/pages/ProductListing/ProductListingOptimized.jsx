@@ -1,0 +1,18 @@
+import React from "react";
+
+import "./ProductListing.css";
+import { Filter } from "./components/Filter/FilterOptimized";
+import { ProductListingSection } from "./components/ProductListingSection/ProductListingSectionOptimized";
+import { useData } from "../../contexts/DataProvider";
+
+export const ProductListing = () => {
+  const { loading } = useData();
+  return (
+    !loading && (
+      <div className="page-container">
+        <Filter className="filters" />
+        <ProductListingSection className="products-container" />
+      </div>
+    )
+  );
+};
