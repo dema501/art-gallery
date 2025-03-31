@@ -10,7 +10,7 @@ export const initialState = {
   },
 };
 
-export const dataReducer = (state, action) => {
+export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_ALL_PRODUCTS_FROM_API":
       return { ...state, allProductsFromApi: action.payload };
@@ -29,7 +29,7 @@ export const dataReducer = (state, action) => {
 
     case "ADD_CATEGORIES": {
       const isCategoryPresent = state.filters.categories.find(
-        (category) => category === action.payload
+        (category) => category === action.payload,
       );
 
       return {
@@ -38,7 +38,7 @@ export const dataReducer = (state, action) => {
           ...state.filters,
           categories: isCategoryPresent
             ? state.filters.categories.filter(
-                (category) => category !== action.payload
+                (category) => category !== action.payload,
               )
             : [...state.filters.categories, action.payload],
         },
@@ -53,7 +53,7 @@ export const dataReducer = (state, action) => {
 
     case "ADD_PRICE": {
       const isPricePresent = state.filters.price.find(
-        (price) => price.min === action.payload.min
+        (price) => price.min === action.payload.min,
       );
       return {
         ...state,
@@ -61,7 +61,7 @@ export const dataReducer = (state, action) => {
           ...state.filters,
           price: isPricePresent
             ? state.filters.price.filter(
-                (price) => price.min !== action.payload.min
+                (price) => price.min !== action.payload.min,
               )
             : [...state.filters.price, action.payload],
         },
