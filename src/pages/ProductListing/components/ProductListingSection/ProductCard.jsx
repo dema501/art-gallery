@@ -3,6 +3,7 @@ import Tilt from "react-parallax-tilt";
 import { Link } from "react-router-dom";
 import { BsFillStarFill } from "react-icons/bs";
 import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import LazyLoad from "react-lazyload";
 
 export const ProductCard = React.memo(
   ({
@@ -45,7 +46,17 @@ export const ProductCard = React.memo(
                 tiltMaxAngleY={15}
                 scale={1.08}
               >
-                <img src={img} alt="" />
+                <LazyLoad
+                  placeholder={
+                    <img
+                      src="/assets/images/products-images/loading.jpeg"
+                      alt="loading..."
+                      className="product-card-image--loading"
+                    />
+                  }
+                >
+                  <img src={img} alt={name} />
+                </LazyLoad>
               </Tilt>
             </div>
           </Link>
