@@ -44,3 +44,5 @@ export const UserProfile = () => {
     )
   );
 };
+
+export default UserProfile;

@@ -96,3 +96,5 @@ export const Addresses = () => {
     </div>
   );
 };
+
+export default Addresses;

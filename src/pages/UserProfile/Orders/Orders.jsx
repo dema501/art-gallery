@@ -48,12 +48,14 @@ export const Orders = () => {
                       <span className="price">Price: ${discounted_price}</span>
                     </div>
                   </div>
-                )
+                ),
               )}
             </div>
           </div>
-        )
+        ),
       )}
     </div>
   );
 };
+
+export default Orders;

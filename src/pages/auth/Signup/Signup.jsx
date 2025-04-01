@@ -37,12 +37,12 @@ export const Signup = () => {
           signupCredential.email,
           signupCredential.password,
           signupCredential.firstName,
-          signupCredential.lastName
+          signupCredential.lastName,
         );
         if (response.status === 201) {
           setSignUpLoading(false);
           toast.success(
-            `You've successfully signed up, ${response.data.createdUser.firstName}`
+            `You've successfully signed up, ${response.data.createdUser.firstName}`,
           );
           const encodedToken = response.data.encodedToken;
           const firstName = response.data.createdUser.firstName;
@@ -217,3 +217,5 @@ export const Signup = () => {
     )
   );
 };
+
+export default Signup;

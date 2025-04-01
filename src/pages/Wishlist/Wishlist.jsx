@@ -38,7 +38,8 @@ export const Wishlist = () => {
                 <h3>{product.name}</h3>
                 <p className="ratings">
                   {product.rating}
-                  <BsFillStarFill color="orange" /> ({product.reviews} reviews){" "}
+                  <BsFillStarFill color="orange" /> ({product.reviews}{" "}
+                  reviews){" "}
                 </p>
                 <div className="price-container">
                   <p className="original-price">${product.original_price}</p>
@@ -84,3 +85,5 @@ export const Wishlist = () => {
     ))
   );
 };
+
+export default Wishlist;

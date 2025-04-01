@@ -12,7 +12,7 @@ export const ProductDetails = () => {
   const { loading } = useData();
 
   const selectedProduct = state.allProductsFromApi?.find(
-    ({ id }) => Number(id) === Number(productId)
+    ({ id }) => Number(id) === Number(productId),
   );
 
   return (
@@ -26,3 +26,5 @@ export const ProductDetails = () => {
     )
   );
 };
+
+export default ProductDetails;

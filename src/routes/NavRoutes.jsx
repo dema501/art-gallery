@@ -1,67 +1,83 @@
-import React from "react";
-import { Home } from "../pages/Home/Home";
-import { Cart } from "../pages/Cart/Cart";
+import React, { Suspense, lazy } from "react"; // Import lazy and Suspense
+
 import { Route, Routes } from "react-router-dom";
-import { Login } from "../pages/auth/Login/Login";
-import { ProductListing } from "../pages/ProductListing/ProductListingOptimized";
-import { ProductDetails } from "../pages/ProductDetails/ProductDetails";
+
 import { RequiresAuth } from "../components/requires-auth/RequiresAuth";
-import { Signup } from "../pages/auth/Signup/Signup";
-import { Logout } from "../pages/auth/Logout/Logout";
-import { Checkout } from "../pages/Checkout/Checkout";
-import { Wishlist } from "../pages/Wishlist/Wishlist";
-import { UserProfile } from "../pages/UserProfile/UserProfile";
-import { Profile } from "../pages/UserProfile/Profile/Profile";
-import { Addresses } from "../pages/UserProfile/Addresses/Addresses";
-import { Orders } from "../pages/UserProfile/Orders/Orders";
-import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
+import { Loader } from "../components/Loader/Loader";
+
+import Home from "../pages/Home/Home";
+
+const Cart = lazy(() => import("../pages/Cart/Cart"));
+const Login = lazy(() => import("../pages/auth/Login/Login"));
+const ProductListing = lazy(
+  () => import("../pages/ProductListing/ProductListingOptimized"),
+);
+const ProductDetails = lazy(
+  () => import("../pages/ProductDetails/ProductDetails"),
+);
+const Signup = lazy(() => import("../pages/auth/Signup/Signup"));
+const Logout = lazy(() => import("../pages/auth/Logout/Logout"));
+const Checkout = lazy(() => import("../pages/Checkout/Checkout"));
+const Wishlist = lazy(() => import("../pages/Wishlist/Wishlist"));
+const UserProfile = lazy(() => import("../pages/UserProfile/UserProfile"));
+const Profile = lazy(() => import("../pages/UserProfile/Profile/Profile"));
+const Addresses = lazy(
+  () => import("../pages/UserProfile/Addresses/Addresses"),
+);
+const Orders = lazy(() => import("../pages/UserProfile/Orders/Orders"));
+const PageNotFound = lazy(() => import("../pages/PageNotFound/PageNotFound"));
 
 export const NavRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route
-        path="/cart"
-        element={
-          <RequiresAuth>
-            <Cart />
-          </RequiresAuth>
-        }
-      />
-      <Route
-        path="/wishlist"
-        element={
-          <RequiresAuth>
-            <Wishlist />
-          </RequiresAuth>
-        }
-      />
-      <Route path="*" element={<PageNotFound />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/logout" element={<Logout />} />
-      <Route path="/product-listing" element={<ProductListing />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/product-details/:productId" element={<ProductDetails />} />
-      <Route
-        path="/checkout"
-        element={
-          <RequiresAuth>
-            <Checkout />
-          </RequiresAuth>
-        }
-      />
-      <Route path="/profile" element={<UserProfile />}>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<Home />} />
         <Route
-          path="/profile/"
+          path="/cart"
           element={
             <RequiresAuth>
-              <Profile />
+              <Cart />
             </RequiresAuth>
           }
         />
-        <Route path="/profile/orders" element={<Orders />} />
-        <Route path="/profile/addresses" element={<Addresses />} />
-      </Route>
-    </Routes>
+        <Route
+          path="/wishlist"
+          element={
+            <RequiresAuth>
+              <Wishlist />
+            </RequiresAuth>
+          }
+        />
+        <Route path="*" element={<PageNotFound />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/product-listing" element={<ProductListing />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/product-details/:productId"
+          element={<ProductDetails />}
+        />
+        <Route
+          path="/checkout"
+          element={
+            <RequiresAuth>
+              <Checkout />
+            </RequiresAuth>
+          }
+        />
+        <Route path="/profile" element={<UserProfile />}>
+          <Route
+            path="/profile/"
+            element={
+              <RequiresAuth>
+                <Profile />
+              </RequiresAuth>
+            }
+          />
+          <Route path="/profile/orders" element={<Orders />} />
+          <Route path="/profile/addresses" element={<Addresses />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };

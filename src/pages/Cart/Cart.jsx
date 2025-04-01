@@ -43,3 +43,5 @@ export const Cart = () => {
     ))
   );
 };
+
+export default Cart;

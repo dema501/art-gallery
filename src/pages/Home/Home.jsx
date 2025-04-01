@@ -6,7 +6,7 @@ import { VideosSection } from "./components/VideosSection/VideosSection";
 import { HeroVideo } from "./components/HeroVideo/HeroVideo";
 import { useData } from "../../contexts/DataProvider.js";
 
-export const Home = () => {
+const Home = () => {
   const { loading } = useData();
   return (
     !loading && (
@@ -22,3 +22,5 @@ export const Home = () => {
     )
   );
 };
+
+export default Home;

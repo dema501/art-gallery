@@ -16,3 +16,5 @@ export const ProductListing = () => {
     )
   );
 };
+
+export default ProductListing;
